@@ -1,27 +1,21 @@
 package matrix;
 
 public class MatrixFunctions {
-    private Matrix one;
-    private Matrix two;
 
-
-    public MatrixFunctions(Matrix m1, Matrix m2) {
-        one = m1;
-        two = m2;
+    /**
+     * 
+     *
+     */
+    public MatrixFunctions() {
 
     }
 
 
-    public Matrix getOne() {
-        return one;
-    }
-
-
-    public Matrix getTwo() {
-        return two;
-    }
-
-
+    /**
+     * 
+     * @param matrix
+     * @return the numbers entered for the matrix as a string
+     */
     public String asEntered(Matrix matrix) {
         double[] entered = matrix.toArray();
         StringBuilder str = new StringBuilder();
@@ -37,11 +31,15 @@ public class MatrixFunctions {
     }
 
 
-    public Matrix add() {
+    /**
+     * 
+     * @return a new matrix which is the sum of two others
+     */
+    public Matrix add(Matrix matrix, Matrix other) {
         Matrix sum = new Matrix();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                sum.setNumAt(i, j, one.getNum(i, j) + two.getNum(i, j));
+                sum.setNumAt(i, j, matrix.getNum(i, j) + other.getNum(i, j));
 
             }
         }
@@ -50,11 +48,17 @@ public class MatrixFunctions {
     }
 
 
-    public Matrix subtract() {
+    /**
+     * 
+     * @param matrix
+     * @param other
+     * @return the difference between two matrices
+     */
+    public Matrix subtract(Matrix matrix, Matrix other) {
         Matrix sub = new Matrix();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                sub.setNumAt(i, j, one.getNum(i, j) - two.getNum(i, j));
+                sub.setNumAt(i, j, matrix.getNum(i, j) - other.getNum(i, j));
 
             }
         }
@@ -63,11 +67,17 @@ public class MatrixFunctions {
     }
 
 
-    public Matrix multiply() {
+    /**
+     * 
+     * @param matrix
+     * @param other
+     * @return the product between two matrices
+     */
+    public Matrix multiply(Matrix matrix, Matrix other) {
         Matrix product = new Matrix();
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                product.setNumAt(i, j, multiplyHelp(i, j));
+                product.setNumAt(i, j, multiplyHelp(i, j, matrix, other));
             }
         }
 
@@ -76,10 +86,19 @@ public class MatrixFunctions {
     }
 
 
-    private double multiplyHelp(int i, int j) {
+    /**
+     * 
+     * @param i
+     * @param j
+     * @param matrix
+     * @param other
+     * @return helper method to compute information for specified index and then
+     *         returns to that index
+     */
+    private double multiplyHelp(int i, int j, Matrix matrix, Matrix other) {
 
-        double[] row = one.getRow(i);
-        double[] col = two.getColumn(j);
+        double[] row = matrix.getRow(i);
+        double[] col = other.getColumn(j);
         double product = ((row[0] * col[0]) + (row[1] * col[1]) + (row[2]
             * col[2]));
 
@@ -87,6 +106,11 @@ public class MatrixFunctions {
     }
 
 
+    /**
+     * 
+     * @param matrix
+     * @return a transposed matrix
+     */
     public Matrix transpose(Matrix matrix) {
         Matrix trans = new Matrix();
         for (int i = 0; i < 3; i++) {
@@ -96,6 +120,11 @@ public class MatrixFunctions {
     }
 
 
+    /**
+     * 
+     * @param matrix
+     * @return the diagonal of a matrix as a string
+     */
     public String diagonal(Matrix matrix) {
         StringBuilder str = new StringBuilder();
         for (int i = 0; i < 3; i++) {
@@ -106,6 +135,12 @@ public class MatrixFunctions {
     }
 
 
+    /**
+     * 
+     * @param matrix
+     * @param other
+     * @return a matrix whose diagonal has been switched with another matrix
+     */
     public Matrix switchDiagonal(Matrix matrix, Matrix other) {
         Matrix temp = new Matrix();
         for (int i = 0; i < 3; i++) {
@@ -119,6 +154,11 @@ public class MatrixFunctions {
     }
 
 
+    /**
+     * 
+     * @param matrix
+     * @return the determinate of a matrix as a string
+     */
     public String determinant(Matrix matrix) {
         double[][] det = new double[3][5];
         double determinant = 0;
@@ -140,6 +180,12 @@ public class MatrixFunctions {
     }
 
 
+    /**
+     * 
+     * @param deter
+     * @param row
+     * @return helper method for determinant
+     */
     private double detHelp(double[][] deter, int row) {
         int num = row;
         double[][] det = deter;

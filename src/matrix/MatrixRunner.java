@@ -7,11 +7,14 @@ public class MatrixRunner {
     }
 
 
+    /**
+     * runs the project
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
 
-        Matrix one = new Matrix();
-        Matrix two = new Matrix();
-        MatrixFunctions funct = new MatrixFunctions(one, two);
+        MatrixFunctions funct = new MatrixFunctions();
         MatrixWindow window = new MatrixWindow(funct);
 
     }

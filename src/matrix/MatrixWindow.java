@@ -37,8 +37,6 @@ public class MatrixWindow {
     public MatrixWindow(MatrixFunctions funct) {
 
         fun = funct;
-        one = fun.getOne();
-        two = fun.getTwo();
         text = new JTextArea();
         createMatrix();
 
@@ -70,6 +68,8 @@ public class MatrixWindow {
      * values is separate variables
      */
     private void createMatrix() {
+        one = new Matrix();
+        two = new Matrix();
         scan = new Scanner(System.in);
         one.setMatrix(scan);
         two.setMatrix(scan);
@@ -77,9 +77,9 @@ public class MatrixWindow {
 
         first = fun.asEntered(one);
         second = fun.asEntered(two);
-        sum = fun.add();
-        sub = fun.subtract();
-        product = fun.multiply();
+        sum = fun.add(one, two);
+        sub = fun.subtract(one, two);
+        product = fun.multiply(one, two);
         trans = fun.transpose(one);
         trans2 = fun.transpose(two);
         diagonal = fun.diagonal(one);
