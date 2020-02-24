@@ -28,6 +28,12 @@ public class MatrixWindow {
     private Matrix twoDSwitch;
 
 
+    /**
+     * creates a new window where matrices will be displayed
+     * 
+     * @param funct
+     *            a matrix to be manipulated
+     */
     public MatrixWindow(MatrixFunctions funct) {
 
         fun = funct;
@@ -59,6 +65,10 @@ public class MatrixWindow {
     }
 
 
+    /**
+     * creates two new matrices and then manipulates them and stores the new
+     * values is separate variables
+     */
     private void createMatrix() {
         scan = new Scanner(System.in);
         one.setMatrix(scan);
@@ -82,6 +92,9 @@ public class MatrixWindow {
     }
 
 
+    /**
+     * adds the matrices and subsequent parts to the window
+     */
     private void addMatrix() {
 
         String test = one.toString();
